@@ -1,4 +1,4 @@
-name: Build and Deploy to VPSDime
+name: Build and Deploy to PROD
 
 on:
   push:
@@ -79,7 +79,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Deploy to VPSDime
+      - name: Deploy to PROD
         uses: appleboy/ssh-action@v1.2.0
         with:
           host: ${{ secrets.VPS_HOST }}
