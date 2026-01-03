@@ -1,0 +1,108 @@
+{
+  "nav": {
+    "dashboard": "ダッシュボード",
+    "settings": "設定",
+    "title": "J-INSIGHT",
+    "subtitle": "出入国在留管理庁統計"
+  },
+  "stats": {
+    "totalApplications": "申請総数",
+    "pending": "処理中",
+    "granted": "許可",
+    "denied": "不許可",
+    "approvalRate": "許可率"
+  },
+  "charts": {
+    "processingStatus": "処理状況",
+    "approvalRates": "許可率推移",
+    "backlogTrend": "未処理案件推移",
+    "yearOverYear": "前年比",
+    "bureauDistribution": "地方局別分布"
+  },
+  "filters": {
+    "bureau": "地方局",
+    "applicationType": "申請種類",
+    "allTypes": "全種類"
+  },
+  "bureaus": {
+    "all": "全国",
+    "101170": "東京",
+    "101210": "横浜",
+    "101190": "成田空港",
+    "101200": "羽田空港",
+    "101460": "大阪",
+    "101490": "神戸",
+    "101480": "関西空港",
+    "101350": "名古屋",
+    "101370": "中部空港",
+    "101720": "福岡",
+    "101740": "那覇",
+    "101580": "広島",
+    "101010": "札幌",
+    "101090": "仙台",
+    "101670": "高松"
+  },
+  "applicationTypes": {
+    "statusAcquisition": "在留資格取得",
+    "periodExtension": "在留期間更新",
+    "statusChange": "在留資格変更",
+    "extraStatusActivities": "資格外活動",
+    "reEntry": "再入国許可",
+    "permanentResidence": "永住許可"
+  },
+  "common": {
+    "officialStatistics": "出入国在留管理庁統計 - 提供: ",
+    "builtWith": "開発技術:",
+    "viewSource": "ソースコードを見る",
+    "month": "月",
+    "applications": "申請件数",
+    "noData": "データがありません",
+    "hideDetails": "詳細を隠す",
+    "showDetails": "詳細を表示",
+    "calculating": "計算中...",
+    "total": "合計",
+    "vsLastMonth": "前月比"
+  },
+  "forecast": {
+    "title": "📅 審査期間予測",
+    "applicationDate": "申請日",
+    "estimatedCompletion": "完了予測",
+    "queuePosition": "待ち順位",
+    "processedEstimate": "処理完了 (推定)",
+    "currentBacklog": "現在の未処理件数",
+    "dailyProcessing": "1日あたりの処理数",
+    "applicationsPerDay": "件 / 日",
+    "bureauEfficiency": "局の処理効率",
+    "relativeToNationalAvg": "全国平均比",
+    "calculationDetails": "計算詳細",
+    "disclaimer": "免責事項: これは過去のデータに基づく統計的な予測です。実際の審査期間は個別の事情や審査官の状況により異なります。出入国在留管理庁とは関係ありません。",
+    "completed": "完了",
+    "likelyProcessed": "処理済み (推定)",
+    "daysRemaining": "残り約 {days} 日",
+    "variables": {
+      "estimatedDays": "推定残り日数",
+      "currentQueue": "現在の待ち順位",
+      "dailyRate": "1日あたりの処理率 (平均)",
+      "totalProcessed": "総処理件数 (過去6ヶ月)",
+      "totalDays": "総日数 (過去6ヶ月)"
+    }
+  },
+  "chartLabels": {
+    "granted": "許可",
+    "denied": "不許可",
+    "backlog": "未処理",
+    "new": "新規",
+    "pending": "処理中",
+    "totalApplications": "申請総数",
+    "approvalRate": "許可率",
+    "yearAgo": "前年",
+    "current": "今年"
+  },
+  "periods": {
+    "latestMonth": "最新月",
+    "12months": "12ヶ月",
+    "24months": "24ヶ月",
+    "36months": "36ヶ月",
+    "allTime": "全期間"
+  }
+}

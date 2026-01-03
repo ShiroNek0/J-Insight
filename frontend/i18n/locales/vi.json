@@ -1,0 +1,108 @@
+{
+  "nav": {
+    "dashboard": "Bảng điều khiển",
+    "settings": "Cài đặt",
+    "title": "J-INSIGHT",
+    "subtitle": "THỐNG KÊ QUẢN LÝ XUẤT NHẬP CẢNH"
+  },
+  "stats": {
+    "totalApplications": "Tổng đơn",
+    "pending": "Đang xử lý",
+    "granted": "Được cấp",
+    "denied": "Bị từ chối",
+    "approvalRate": "Tỷ lệ chấp thuận"
+  },
+  "charts": {
+    "processingStatus": "Trạng thái xử lý",
+    "approvalRates": "Tỷ lệ chấp thuận",
+    "backlogTrend": "Xu hướng tồn đọng",
+    "yearOverYear": "So với năm trước",
+    "bureauDistribution": "Phân bố theo cục"
+  },
+  "filters": {
+    "bureau": "Cục quản lý",
+    "applicationType": "Loại đơn",
+    "allTypes": "Tất cả"
+  },
+  "bureaus": {
+    "all": "Toàn quốc",
+    "101170": "Tokyo",
+    "101210": "Yokohama",
+    "101190": "Sân bay Narita",
+    "101200": "Sân bay Haneda",
+    "101460": "Osaka",
+    "101490": "Kobe",
+    "101480": "Sân bay Kansai",
+    "101350": "Nagoya",
+    "101370": "Sân bay Chubu",
+    "101720": "Fukuoka",
+    "101740": "Naha",
+    "101580": "Hiroshima",
+    "101010": "Sapporo",
+    "101090": "Sendai",
+    "101670": "Takamatsu"
+  },
+  "applicationTypes": {
+    "statusAcquisition": "Xin tư cách lưu trú (取得)",
+    "periodExtension": "Gia hạn cư trú (更新)",
+    "statusChange": "Đổi tư cách lưu trú (変更)",
+    "extraStatusActivities": "Hoạt động ngoài tư cách (資格外)",
+    "reEntry": "Tái nhập cảnh (再入国)",
+    "permanentResidence": "Vĩnh trú (永住)"
+  },
+  "common": {
+    "officialStatistics": "Số liệu chính thức từ Tổng cục Quản lý Xuất nhập cảnh Nhật Bản - qua",
+    "builtWith": "Xây dựng bằng",
+    "viewSource": "Xem mã nguồn",
+    "month": "Tháng",
+    "applications": "Số đơn",
+    "noData": "Không có dữ liệu",
+    "hideDetails": "Ẩn chi tiết",
+    "showDetails": "Xem chi tiết",
+    "calculating": "Đang tính toán...",
+    "total": "Tổng",
+    "vsLastMonth": "so với tháng trước"
+  },
+  "forecast": {
+    "title": "📅 Dự báo thời gian xử lý",
+    "applicationDate": "Ngày nộp đơn",
+    "estimatedCompletion": "Dự kiến hoàn thành",
+    "queuePosition": "Vị trí trong hàng đợi",
+    "processedEstimate": "Đã xử lý (Ước tính)",
+    "currentBacklog": "Tồn đọng hiện tại",
+    "dailyProcessing": "Xử lý hàng ngày",
+    "applicationsPerDay": "Đơn / Ngày",
+    "bureauEfficiency": "Hiệu suất cục",
+    "relativeToNationalAvg": "So với trung bình toàn quốc",
+    "calculationDetails": "Chi tiết tính toán",
+    "disclaimer": "Miễn trừ trách nhiệm: Đây là ước tính thống kê dựa trên dữ liệu lịch sử. Thời gian xử lý thực tế phụ thuộc vào độ phức tạp của từng hồ sơ và tình trạng nhân sự. Không liên kết với Cục Quản lý Xuất nhập cảnh Nhật Bản.",
+    "completed": "Đã hoàn thành",
+    "likelyProcessed": "Có thể đã xử lý xong",
+    "daysRemaining": "Còn lại ~{days} ngày",
+    "variables": {
+      "estimatedDays": "Số ngày còn lại ước tính",
+      "currentQueue": "Vị trí hàng đợi hiện tại",
+      "dailyRate": "Tốc độ xử lý hàng ngày (Trung bình)",
+      "totalProcessed": "Tổng đã xử lý (6 tháng qua)",
+      "totalDays": "Tổng số ngày (6 tháng qua)"
+    }
+  },
+  "chartLabels": {
+    "granted": "Được cấp",
+    "denied": "Bị từ chối",
+    "backlog": "Tồn đọng",
+    "new": "Mới",
+    "pending": "Đang xử lý",
+    "totalApplications": "Tổng đơn",
+    "approvalRate": "Tỷ lệ chấp thuận",
+    "yearAgo": "Năm trước",
+    "current": "Năm nay"
+  },
+  "periods": {
+    "latestMonth": "Tháng mới nhất",
+    "12months": "12 Tháng",
+    "24months": "24 Tháng",
+    "36months": "36 Tháng",
+    "allTime": "Tất cả"
+  }
+}
