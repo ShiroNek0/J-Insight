@@ -1,0 +1,24 @@
+{
+  "name": "frontend",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "chart.js": "^4.5.1",
+    "katex": "^0.16.27",
+    "nuxt": "^4.2.2",
+    "vue": "^3.5.26",
+    "vue-chartjs": "^5.3.3",
+    "vue-router": "^4.6.4"
+  },
+  "devDependencies": {
+    "@nuxtjs/i18n": "^10.2.1",
+    "@nuxtjs/tailwindcss": "^6.14.0"
+  }
+}

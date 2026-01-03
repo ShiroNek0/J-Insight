@@ -1,0 +1,108 @@
+{
+  "nav": {
+    "dashboard": "Dashboard",
+    "settings": "Settings",
+    "title": "J-INSIGHT",
+    "subtitle": "IMMIGRATION SERVICES STATISTICS"
+  },
+  "stats": {
+    "totalApplications": "Total Applications",
+    "pending": "Pending",
+    "granted": "Granted",
+    "denied": "Denied",
+    "approvalRate": "Approval Rate"
+  },
+  "charts": {
+    "processingStatus": "Processing Status",
+    "approvalRates": "Approval Rates",
+    "backlogTrend": "Backlog Trend",
+    "yearOverYear": "Year over Year",
+    "bureauDistribution": "Bureau Distribution"
+  },
+  "filters": {
+    "bureau": "Bureau",
+    "applicationType": "Application Type",
+    "allTypes": "All Types"
+  },
+  "bureaus": {
+    "all": "Nationwide",
+    "101170": "Tokyo",
+    "101210": "Yokohama",
+    "101190": "Narita Airport",
+    "101200": "Haneda Airport",
+    "101460": "Osaka",
+    "101490": "Kobe",
+    "101480": "Kansai Airport",
+    "101350": "Nagoya",
+    "101370": "Chubu Airport",
+    "101720": "Fukuoka",
+    "101740": "Naha",
+    "101580": "Hiroshima",
+    "101010": "Sapporo",
+    "101090": "Sendai",
+    "101670": "Takamatsu"
+  },
+  "applicationTypes": {
+    "statusAcquisition": "Status Acquisition (取得)",
+    "periodExtension": "Period Extension (更新)",
+    "statusChange": "Status Change (変更)",
+    "extraStatusActivities": "Extra-Status Activities (資格外)",
+    "reEntry": "Re-entry (再入国)",
+    "permanentResidence": "Permanent Residence (永住)"
+  },
+  "common": {
+    "officialStatistics": "Official Statistics from Immigration Services Agency of Japan - via",
+    "builtWith": "Built with",
+    "viewSource": "View Source",
+    "month": "Month",
+    "applications": "Applications",
+    "noData": "No data available",
+    "hideDetails": "Hide Details",
+    "showDetails": "Show Details",
+    "calculating": "Calculating...",
+    "total": "Total",
+    "vsLastMonth": "vs last month"
+  },
+  "forecast": {
+    "title": "📅 Processing Time Forecast",
+    "applicationDate": "Application Date",
+    "estimatedCompletion": "Estimated Completion",
+    "queuePosition": "Queue Position",
+    "processedEstimate": "Processed Estimate",
+    "currentBacklog": "Current Backlog",
+    "dailyProcessing": "Daily Processing",
+    "applicationsPerDay": "Applications / Day",
+    "bureauEfficiency": "Bureau Efficiency",
+    "relativeToNationalAvg": "Relative to National Avg",
+    "calculationDetails": "Calculation Details",
+    "disclaimer": "Disclaimer: This is a statistical estimate based on historical data. Actual processing times depend on individual case complexity and officer availability. Not affiliated with the Japanese Immigration Services Agency.",
+    "completed": "Completed",
+    "likelyProcessed": "Likely already processed",
+    "daysRemaining": "~{days} days remaining",
+    "variables": {
+      "estimatedDays": "Estimated Days Remaining",
+      "currentQueue": "Current Queue Position",
+      "dailyRate": "Daily Processing Rate (Average)",
+      "totalProcessed": "Total Processed (last 6 months)",
+      "totalDays": "Total Days (last 6 months)"
+    }
+  },
+  "chartLabels": {
+    "granted": "Granted",
+    "denied": "Denied",
+    "backlog": "Backlog",
+    "new": "New",
+    "pending": "Pending",
+    "totalApplications": "Total Applications",
+    "approvalRate": "Approval Rate",
+    "yearAgo": "Year Ago",
+    "current": "Current"
+  },
+  "periods": {
+    "latestMonth": "Latest Month",
+    "12months": "12 Months",
+    "24months": "24 Months",
+    "36months": "36 Months",
+    "allTime": "All Time"
+  }
+}

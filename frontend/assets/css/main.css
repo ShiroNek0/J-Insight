@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-100;
+  @apply transition-colors duration-300;
+  font-family: "Inter", system-ui, sans-serif;
+}
+
+/* Custom utility classes */
+.glass {
+  @apply bg-white/80 dark:bg-slate-800/80 backdrop-blur-lg;
+}
+
+.card {
+  @apply rounded-xl border border-slate-200 dark:border-slate-700;
+  @apply bg-white dark:bg-slate-800;
+  @apply shadow-sm hover:shadow-md transition-shadow duration-200;
+}
+
+/* Gradient text */
+.gradient-text {
+  @apply bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500;
+  @apply bg-clip-text text-transparent;
+}
+
+/* Chart container animations */
+.chart-enter {
+  @apply opacity-0 transform translate-y-4;
+}
+
+.chart-enter-active {
+  @apply opacity-100 transform translate-y-0;
+  @apply transition-all duration-500 ease-out;
+}
+
+/* Skeleton loading */
+.skeleton {
+  @apply animate-pulse bg-slate-200 dark:bg-slate-700 rounded;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-slate-100 dark:bg-slate-800;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-300 dark:bg-slate-600 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-slate-400 dark:bg-slate-500;
+}
