@@ -1,0 +1,27 @@
+services:
+  backend:
+    image: ghcr.io/${GITHUB_REPOSITORY:-j-insight}/backend:latest
+    restart: unless-stopped
+    volumes:
+      - ./data:/app/data:ro
+    environment:
+      - NODE_ENV=production
+      - PORT=3001
+      - CORS_ORIGINS=${CORS_ORIGINS:-https://your-domain.com}
+    networks:
+      - j-insight
+
+  frontend:
+    image: ghcr.io/${GITHUB_REPOSITORY:-j-insight}/frontend:latest
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+      - NUXT_PUBLIC_API_BASE=${API_BASE:-http://backend:3001/api}
+    depends_on:
+      - backend
+    networks:
+      - j-insight
+
+networks:
+  j-insight:
+    driver: bridge
