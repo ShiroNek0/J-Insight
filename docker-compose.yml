@@ -1,0 +1,35 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: backend
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./data:/app/data:ro
+    environment:
+      - NODE_ENV=development
+      - PORT=3001
+      - CORS_ORIGINS=http://localhost:3000
+    networks:
+      - j-insight
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - NUXT_PUBLIC_API_BASE=http://backend:3001/api
+    depends_on:
+      - backend
+    networks:
+      - j-insight
+
+networks:
+  j-insight:
+    driver: bridge
