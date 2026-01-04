@@ -12,7 +12,7 @@ export default {
   theme: {
     extend: {
       spacing: {
-        'chart-sm': '300px',
+        'chart-sm': '700px',
         'chart-lg': '500px',
         'filter-min': '200px',
         'legend-max': '360px',
