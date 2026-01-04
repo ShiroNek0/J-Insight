@@ -69,6 +69,10 @@ npm run dev
 - `backend/`: NestJS API source code.
 - `data/`: Raw data or static assets (if applicable).
 
+## 💡 Acknowledgements
+
+This project is heavily inspired by [JP Immigration Dashboard](https://github.com/RetroHazard/JP_Immigration_Dashboard). Special thanks to the original author, [RetroHazard](https://github.com/RetroHazard), for the concept and data insights.
+
 ## 📜 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
