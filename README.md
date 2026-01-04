@@ -37,8 +37,8 @@ Currently featuring: **Immigration Services Statistics**.
 1.  Clone the repository:
 
     ```bash
-    git clone https://github.com/yourusername/j-insights.git
-    cd j-insights
+    git clone https://github.com/ShiroNek0/J-Insight.git
+    cd J-Insight
     ```
 
 2.  Install dependencies for both frontend and backend:
