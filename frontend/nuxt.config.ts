@@ -33,6 +33,9 @@ export default defineNuxtConfig({
       meta: [
         { name: 'description', content: "An unified platform for monitoring Japan's public statistics and trends." }
       ],
+      link: [
+        { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }
+      ]
     }
   },
 

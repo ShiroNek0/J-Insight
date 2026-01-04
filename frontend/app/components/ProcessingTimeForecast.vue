@@ -209,7 +209,8 @@ const calculateEstimate = async () => {
 
 const formatDate = (dateStr: string) => {
   const date = new Date(dateStr);
-  return date.toLocaleDateString(locale.value, { month: 'short', day: 'numeric', year: 'numeric' });
+  const monthFormat = locale.value === 'vi' ? 'long' : 'short';
+  return date.toLocaleDateString(locale.value, { month: monthFormat, day: 'numeric', year: 'numeric' });
 };
 
 const { fetchApplicationTypes } = useStats();

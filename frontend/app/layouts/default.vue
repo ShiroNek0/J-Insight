@@ -6,7 +6,7 @@
         <div class="flex items-center justify-between h-16">
           <!-- Logo -->
           <div class="flex items-center gap-3">
-            <div class="flex items-center justify-center w-9 h-9 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm">
+            <div class="flex items-center justify-center w-9 h-9 rounded-full bg-white border border-slate-200 dark:border-slate-700 shadow-sm">
               <div class="w-3.5 h-3.5 bg-red-600 rounded-full"></div>
             </div>
             <div class="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3">
