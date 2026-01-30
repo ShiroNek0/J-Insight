@@ -1,0 +1,83 @@
+name: Data Watcher
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Runs every Sunday at 1:00 AM UTC (10:00 AM JST)
+    - cron: '0 1 * * 0'
+
+concurrency:
+  group: data-watcher
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  check-updates:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Log execution info
+        run: |
+          echo "Data Watcher triggered at $(date)"
+          echo "JST time: $(TZ='Asia/Tokyo' date +'%Y-%m-%d %H:%M:%S %Z')"
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download new data from e-Stat
+        run: |
+          curl -L "https://api.e-stat.go.jp/rest/3.0/app/json/getStatsData?appId=${{ secrets.ESTAT_APP_ID }}&lang=J&statsDataId=0003449073&metaGetFlg=Y&sectionHeaderFlg=2&replaceSpChars=0" \
+            --fail -o data/getStatsData.new.json || {
+              echo "::error::API request failed"
+              exit 1
+            }
+
+      - name: Validate JSON
+        run: |
+          jq -e '.GET_STATS_DATA.STATISTICAL_DATA' data/getStatsData.new.json >/dev/null || {
+            echo "::error::Invalid JSON structure"
+            exit 1
+          }
+
+      - name: Compare SURVEY_DATE
+        id: compare
+        run: |
+          OLD_DATE=$(jq -r '.GET_STATS_DATA.STATISTICAL_DATA.TABLE_INF.SURVEY_DATE' data/getStatsData.json)
+          NEW_DATE=$(jq -r '.GET_STATS_DATA.STATISTICAL_DATA.TABLE_INF.SURVEY_DATE' data/getStatsData.new.json)
+
+          echo "Previous SURVEY_DATE: $OLD_DATE"
+          echo "Current SURVEY_DATE: $NEW_DATE"
+
+          if [ "$OLD_DATE" != "$NEW_DATE" ]; then
+            echo "::notice::Data changed from $OLD_DATE to $NEW_DATE"
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            mv data/getStatsData.new.json data/getStatsData.json
+          else
+            echo "::notice::No changes detected (still $OLD_DATE)"
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            rm data/getStatsData.new.json
+          fi
+
+      - name: Commit and push
+        if: steps.compare.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/getStatsData.json
+          git commit -m "Update immigration data ($(date +'%Y-%m-%d'))"
+          git push
+
+      - name: Summary
+        if: always()
+        run: |
+          if [ "${{ steps.compare.outputs.changed }}" == "true" ]; then
+            echo "### New Data Detected!" >> $GITHUB_STEP_SUMMARY
+            echo "Data has been committed and deploy workflow will trigger automatically." >> $GITHUB_STEP_SUMMARY
+          else
+            echo "### No Changes Detected" >> $GITHUB_STEP_SUMMARY
+            echo "Data has not changed since last check." >> $GITHUB_STEP_SUMMARY
+          fi
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Checked at:** $(TZ='Asia/Tokyo' date +'%Y-%m-%d %H:%M:%S JST')" >> $GITHUB_STEP_SUMMARY
