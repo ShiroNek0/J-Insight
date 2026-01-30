@@ -241,32 +241,48 @@ export class StatsService {
   /**
    * Get monthly aggregated data for charts
    */
-  getMonthlyData(
-    filter?: StatsFilter,
-  ): { month: string; received: number; processed: number; pending: number }[] {
+  getMonthlyData(filter?: StatsFilter): {
+    month: string;
+    received: number;
+    totalReceived: number;
+    processed: number;
+    granted: number;
+    denied: number;
+    pending: number;
+  }[] {
     const data = this.getAllStats(filter).filter((d) => d.bureau !== '100000');
     const months = [...new Set(data.map((d) => d.month))].sort();
 
     return months.map((month) => {
       const monthData = data.filter((d) => d.month === month);
 
+      const carryover = monthData
+        .filter((d) => d.status === '102000')
+        .reduce((sum, d) => sum + d.value, 0);
+
+      const received = monthData
+        .filter((d) => d.status === '103000')
+        .reduce((sum, d) => sum + d.value, 0);
+
+      const granted = monthData
+        .filter((d) => d.status === '301000')
+        .reduce((sum, d) => sum + d.value, 0);
+
+      const denied = monthData
+        .filter((d) => d.status === '302000')
+        .reduce((sum, d) => sum + d.value, 0);
+
+      // totalReceived = carryover + newReceived (same formula as getSummary)
+      const totalReceived = carryover + received;
+
       return {
         month,
-        received: monthData
-          .filter((d) => d.status === '103000')
-          .reduce((sum, d) => sum + d.value, 0),
-        processed: monthData
-          .filter((d) => ['301000', '302000'].includes(d.status)) // Sum of Granted + Denied
-          .reduce((sum, d) => sum + d.value, 0),
-        granted: monthData
-          .filter((d) => d.status === '301000')
-          .reduce((sum, d) => sum + d.value, 0),
-        denied: monthData
-          .filter((d) => d.status === '302000')
-          .reduce((sum, d) => sum + d.value, 0),
-        pending: monthData
-          .filter((d) => d.status === '102000')
-          .reduce((sum, d) => sum + d.value, 0),
+        received,
+        totalReceived,
+        processed: granted + denied,
+        granted,
+        denied,
+        pending: carryover,
       };
     });
   }

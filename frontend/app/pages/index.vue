@@ -241,14 +241,14 @@ const velocities = computed(() => {
   };
 
   return {
-    received: { current: latest.received, previous: previous.received },
+    received: { current: latest.totalReceived, previous: previous.totalReceived },
     processed: { current: latest.processed, previous: previous.processed },
     granted: { current: latest.granted, previous: previous.granted },
     pending: { current: latest.pending, previous: previous.pending },
     denied: { current: latest.denied, previous: previous.denied },
-    approvalRate: { 
-      current: calculateRate(latest.granted, latest.denied), 
-      previous: calculateRate(previous.granted, previous.denied) 
+    approvalRate: {
+      current: calculateRate(latest.granted, latest.denied),
+      previous: calculateRate(previous.granted, previous.denied)
     }
   };
 });
