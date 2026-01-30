@@ -85,6 +85,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Sync data file to VPS
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          source: "data/getStatsData.json"
+          target: ${{ secrets.VPS_DEPLOY_PATH }}
+
       - name: Deploy to PROD
         uses: appleboy/ssh-action@v1.2.0
         with:
@@ -105,6 +114,10 @@ jobs:
             # Pull latest images and restart
             docker compose -f docker-compose.prod.yml pull
             docker compose -f docker-compose.prod.yml up -d --remove-orphans
+
+            # Wait for backend to be ready, then invalidate cache
+            sleep 5
+            curl -X POST http://localhost:3001/api/stats/invalidate-cache || true
 
             # Cleanup old images
             docker image prune -f
