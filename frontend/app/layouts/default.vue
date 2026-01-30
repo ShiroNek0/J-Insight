@@ -9,10 +9,15 @@
             <div class="flex items-center justify-center w-9 h-9 rounded-full bg-white border border-slate-200 dark:border-slate-700 shadow-sm">
               <div class="w-3.5 h-3.5 bg-red-600 rounded-full"></div>
             </div>
-            <div class="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3">
+            <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
               <h1 class="text-lg font-bold tracking-tight text-slate-900 dark:text-white">{{ $t('nav.title') }}</h1>
               <span class="hidden sm:inline text-slate-300 dark:text-slate-600">|</span>
-              <h2 class="text-sm font-medium text-slate-500 dark:text-slate-400">{{ $t('nav.subtitle') }}</h2>
+              <span class="inline-flex flex-col">
+                <h2 class="text-sm font-semibold tracking-wide text-slate-600 dark:text-slate-300">{{ $t('nav.subtitle') }}</h2>
+                <span v-if="formattedLatestMonth" class="hidden sm:block text-xs text-gray-500 dark:text-gray-400 whitespace-nowrap -mt-0.5">
+                  {{ $t('common.latestData', { month: formattedLatestMonth }) }}
+                </span>
+              </span>
             </div>
           </div>
 
@@ -92,4 +97,17 @@
 
 <script setup lang="ts">
 const { isDark, toggle: toggleDarkMode } = useDarkMode();
+const { summary, fetchSummary } = useStats();
+const { locale } = useI18n();
+
+onMounted(() => {
+  fetchSummary();
+});
+
+const formattedLatestMonth = computed(() => {
+  if (!summary.value?.latestMonth) return '';
+  const [year, month] = summary.value.latestMonth.split('-');
+  const date = new Date(parseInt(year), parseInt(month) - 1);
+  return date.toLocaleDateString(locale.value, { year: 'numeric', month: 'long' });
+});
 </script>

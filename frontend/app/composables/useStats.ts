@@ -40,7 +40,7 @@ export const useStats = () => {
   const stats = ref<ImmigrationData[]>([]);
   const summary = ref<StatsSummary | null>(null);
   const bureaus = ref<BureauOption[]>([]);
-  const monthlyData = ref<{ month: string; received: number; processed: number; pending: number; granted: number; denied: number }[]>([]);
+  const monthlyData = ref<{ month: string; received: number; totalReceived: number; processed: number; pending: number; granted: number; denied: number }[]>([]);
   const bureauDistribution = ref<BureauDistribution[]>([]);
 
   const fetchStats = async (filter?: Partial<StatsFilter>) => {
@@ -92,7 +92,7 @@ export const useStats = () => {
       if (filter?.type && filter.type !== 'all') params.append('type', filter.type);
       if (filter?.monthRange) params.append('monthRange', filter.monthRange.toString());
 
-      const response = await $fetch<{ month: string; received: number; processed: number; pending: number; granted: number; denied: number }[]>(
+      const response = await $fetch<{ month: string; received: number; totalReceived: number; processed: number; pending: number; granted: number; denied: number }[]>(
         `${apiBase}/stats/monthly?${params}`
       );
       monthlyData.value = response;

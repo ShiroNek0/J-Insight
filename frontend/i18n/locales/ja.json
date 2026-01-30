@@ -61,7 +61,8 @@
     "showDetails": "詳細を表示",
     "calculating": "計算中...",
     "total": "合計",
-    "vsLastMonth": "前月比"
+    "vsLastMonth": "前月比",
+    "latestData": "最新データ: {month}"
   },
   "forecast": {
     "title": "📅 審査期間予測",

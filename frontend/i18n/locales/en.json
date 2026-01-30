@@ -61,7 +61,8 @@
     "showDetails": "Show Details",
     "calculating": "Calculating...",
     "total": "Total",
-    "vsLastMonth": "vs last month"
+    "vsLastMonth": "vs last month",
+    "latestData": "Latest data: {month}"
   },
   "forecast": {
     "title": "📅 Processing Time Forecast",

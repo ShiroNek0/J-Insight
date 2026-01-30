@@ -61,7 +61,8 @@
     "showDetails": "Xem chi tiết",
     "calculating": "Đang tính toán...",
     "total": "Tổng",
-    "vsLastMonth": "so với tháng trước"
+    "vsLastMonth": "so với tháng trước",
+    "latestData": "Dữ liệu mới nhất: {month}"
   },
   "forecast": {
     "title": "📅 Dự báo thời gian xử lý",
