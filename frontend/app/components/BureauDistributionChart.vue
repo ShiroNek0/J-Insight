@@ -5,17 +5,14 @@
     </div>
 
     <div v-else class="flex flex-col relative h-auto md:h-chart-lg">
-      <!-- Header (Title + Period Selector) -->
-      <div class="flex flex-col sm:flex-row justify-between items-center mb-2 px-2 gap-2 flex-shrink-0">
-        <h3 class="text-xl font-bold text-slate-600 dark:text-slate-400 order-2 sm:order-1">{{ $t('charts.bureauDistribution') }}</h3>
-        
-        <div class="order-1 sm:order-2 self-end sm:self-auto">
-          <BaseSelect
-            v-model.number="selectedPeriod"
-            :options="periodOptions"
-            variant="chart"
-          />
-        </div>
+      <!-- Period Selector -->
+      <div class="flex justify-end mb-2 px-2">
+        <BaseSelect
+          v-model.number="selectedPeriod"
+          :options="periodOptions"
+          variant="chart"
+          icon="📅"
+        />
       </div>
 
       <!-- Content Wrapper -->

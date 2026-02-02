@@ -17,7 +17,19 @@
     "approvalRates": "許可率推移",
     "backlogTrend": "未処理案件推移",
     "yearOverYear": "前年比",
-    "bureauDistribution": "地方局別分布"
+    "bureauDistribution": "地方局別分布",
+    "bureauApprovalRate": {
+      "title": "永住許可率（局別）",
+      "thresholdNote": "処理件数が{count}件未満の地方局は除外されています。",
+      "processed": "件処理",
+      "nationwide": "全国（平均）"
+    }
+  },
+  "chartGroups": {
+    "processing": "処理状況",
+    "approval": "許可",
+    "trends": "推移",
+    "distribution": "分布"
   },
   "filters": {
     "bureau": "地方局",

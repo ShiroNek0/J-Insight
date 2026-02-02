@@ -119,6 +119,21 @@ export class StatsController {
   }
 
   /**
+   * GET /api/stats/bureau-approval-rates
+   * Get bureau approval rates comparison for a specified period
+   */
+  @Get('bureau-approval-rates')
+  getBureauApprovalRates(
+    @Query('type') type?: string,
+    @Query('monthRange') monthRange?: string,
+  ) {
+    return this.statsService.getBureauApprovalRates(
+      type,
+      parseMonthRange(monthRange),
+    );
+  }
+
+  /**
    * GET /api/stats/months
    * Get list of available months
    */

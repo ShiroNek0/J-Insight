@@ -17,7 +17,19 @@
     "approvalRates": "Approval Rates",
     "backlogTrend": "Backlog Trend",
     "yearOverYear": "Year over Year",
-    "bureauDistribution": "Bureau Distribution"
+    "bureauDistribution": "Bureau Distribution",
+    "bureauApprovalRate": {
+      "title": "PR Approval Rate by Bureau",
+      "thresholdNote": "Bureaus with fewer than {count} processed applications are excluded.",
+      "processed": "processed",
+      "nationwide": "Nationwide (Average)"
+    }
+  },
+  "chartGroups": {
+    "processing": "Processing",
+    "approval": "Approval",
+    "trends": "Trends",
+    "distribution": "Distribution"
   },
   "filters": {
     "bureau": "Bureau",

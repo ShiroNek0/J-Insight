@@ -17,6 +17,7 @@
         :model-value="type"
         :options="applicationTypeOptions"
         :label="$t('filters.applicationType')"
+        :disabled="typeDisabled"
         @update:model-value="$emit('update:type', $event as string)"
       />
     </div>
@@ -33,10 +34,12 @@ interface Props {
   type: string;
   bureaus: BureauOption[];
   bureauDisabled?: boolean;
+  typeDisabled?: boolean;
 }
 
 const props = withDefaults(defineProps<Props>(), {
   bureauDisabled: false,
+  typeDisabled: false,
 });
 
 defineEmits<{

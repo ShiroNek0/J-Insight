@@ -1,7 +1,7 @@
 import { Injectable, Logger, HttpException, HttpStatus } from '@nestjs/common';
 import * as fs from 'fs';
 import * as path from 'path';
-import { AGGREGATE_MAPPING } from '../../constants';
+import { AGGREGATE_MAPPING, BUREAU_OPTIONS } from '../../constants';
 import type {
   ImmigrationData,
   RawData,
@@ -351,5 +351,123 @@ export class StatsService {
 
       return entry;
     });
+  }
+
+  /**
+   * Get bureau approval rates for a specified period.
+   * Bureaus with fewer than threshold processed applications are excluded.
+   * @param type - Optional application type filter
+   * @param monthRange - Number of months to include (0 or undefined = all time, 1 = latest month)
+   */
+  getBureauApprovalRates(
+    type?: string,
+    monthRange?: number,
+  ): {
+    data: Array<{
+      bureau: string;
+      bureauCode: string;
+      approvalRate: number;
+      processed: number;
+    }>;
+    periodStart: string;
+    periodEnd: string;
+    threshold: number;
+    excludedBureaus: string[];
+  } {
+    const THRESHOLD = 50;
+
+    // Get all data
+    const allData = this.getAllStats();
+    const months = [...new Set(allData.map((d) => d.month))].sort();
+
+    // Determine which months to include based on monthRange
+    let selectedMonths: string[];
+    if (monthRange === undefined || monthRange === 0) {
+      // All time
+      selectedMonths = months;
+    } else {
+      // Last N months
+      selectedMonths = months.slice(-monthRange);
+    }
+
+    const periodStart = selectedMonths[0] || '';
+    const periodEnd = selectedMonths[selectedMonths.length - 1] || '';
+
+    // Filter data to selected months and optionally by type
+    let data = allData.filter((d) => selectedMonths.includes(d.month));
+    if (type && type !== 'all') {
+      data = data.filter((d) => d.type === type);
+    }
+
+    // Get bureau labels from constants
+    const bureauLabels: Record<string, string> = {};
+    BUREAU_OPTIONS.forEach((b) => {
+      bureauLabels[b.value] = b.label;
+    });
+
+    // Aggregate granted (301000) and denied (302000) by bureau
+    const bureauStats = new Map<
+      string,
+      { granted: number; denied: number }
+    >();
+
+    data.forEach((item) => {
+      if (!bureauStats.has(item.bureau)) {
+        bureauStats.set(item.bureau, { granted: 0, denied: 0 });
+      }
+      const stats = bureauStats.get(item.bureau)!;
+      if (item.status === '301000') {
+        stats.granted += item.value;
+      } else if (item.status === '302000') {
+        stats.denied += item.value;
+      }
+    });
+
+    // Calculate approval rates and filter
+    const results: Array<{
+      bureau: string;
+      bureauCode: string;
+      approvalRate: number;
+      processed: number;
+    }> = [];
+    const excludedBureaus: string[] = [];
+
+    bureauStats.forEach((stats, bureauCode) => {
+      const processed = stats.granted + stats.denied;
+      const bureauLabel = bureauLabels[bureauCode] || bureauCode;
+
+      // Always include Nationwide (100000), otherwise apply threshold
+      if (bureauCode === '100000') {
+        const approvalRate =
+          processed > 0 ? (stats.granted / processed) * 100 : 0;
+        results.push({
+          bureau: 'Nationwide',
+          bureauCode,
+          approvalRate: Math.round(approvalRate * 100) / 100,
+          processed,
+        });
+      } else if (processed >= THRESHOLD) {
+        const approvalRate = (stats.granted / processed) * 100;
+        results.push({
+          bureau: bureauLabel,
+          bureauCode,
+          approvalRate: Math.round(approvalRate * 100) / 100,
+          processed,
+        });
+      } else if (processed > 0) {
+        excludedBureaus.push(bureauLabel);
+      }
+    });
+
+    // Sort by approval rate descending
+    results.sort((a, b) => b.approvalRate - a.approvalRate);
+
+    return {
+      data: results,
+      periodStart,
+      periodEnd,
+      threshold: THRESHOLD,
+      excludedBureaus,
+    };
   }
 }

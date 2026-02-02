@@ -5,16 +5,14 @@
     </div>
 
     <div v-else class="h-chart-sm md:h-chart-lg relative flex flex-col">
-      <!-- Header -->
-      <div class="flex flex-col sm:flex-row justify-between items-center mb-2 px-2 gap-2 flex-shrink-0">
-        <h3 class="text-xl font-bold text-slate-600 dark:text-slate-400 order-2 sm:order-1">{{ $t('charts.yearOverYear') }}</h3>
-        <div class="order-1 sm:order-2 self-end sm:self-auto">
-          <BaseSelect
-            v-model.number="selectedPeriod"
-            :options="periodOptions"
-            variant="chart"
-          />
-        </div>
+      <!-- Period Selector -->
+      <div class="flex justify-end mb-2 px-2">
+        <BaseSelect
+          v-model.number="selectedPeriod"
+          :options="periodOptions"
+          variant="chart"
+          icon="📅"
+        />
       </div>
       <div class="flex-1 min-h-0 w-full relative">
       <canvas ref="chartCanvas"></canvas>

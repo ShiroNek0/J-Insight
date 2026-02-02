@@ -17,7 +17,19 @@
     "approvalRates": "Tỷ lệ chấp thuận",
     "backlogTrend": "Xu hướng tồn đọng",
     "yearOverYear": "So với năm trước",
-    "bureauDistribution": "Phân bố theo cục"
+    "bureauDistribution": "Phân bố theo cục",
+    "bureauApprovalRate": {
+      "title": "Tỷ lệ duyệt vĩnh trú theo Cục",
+      "thresholdNote": "Các cục có ít hơn {count} đơn được xử lý sẽ bị loại trừ.",
+      "processed": "đã xử lý",
+      "nationwide": "Toàn quốc (Trung bình)"
+    }
+  },
+  "chartGroups": {
+    "processing": "Xử lý",
+    "approval": "Phê duyệt",
+    "trends": "Xu hướng",
+    "distribution": "Phân bố"
   },
   "filters": {
     "bureau": "Cục quản lý",

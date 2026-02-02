@@ -141,6 +141,21 @@ export const useStats = () => {
     }
   };
 
+  const bureauApprovalRates = ref<BureauApprovalRatesResponse | null>(null);
+
+  const fetchBureauApprovalRates = async (type?: string, monthRange?: number) => {
+    try {
+      const params = new URLSearchParams();
+      if (type && type !== 'all') params.append('type', type);
+      if (monthRange !== undefined) params.append('monthRange', monthRange.toString());
+
+      const response = await $fetch<BureauApprovalRatesResponse>(`${apiBase}/stats/bureau-approval-rates?${params}`);
+      bureauApprovalRates.value = response;
+    } catch (err) {
+      console.error('Failed to fetch bureau approval rates:', err);
+    }
+  };
+
   return {
     loading,
     error,
@@ -157,6 +172,8 @@ export const useStats = () => {
     bureauDistribution,
     fetchBacklogTrend,
     backlogTrend,
+    fetchBureauApprovalRates,
+    bureauApprovalRates,
   };
 };
 
@@ -168,4 +185,19 @@ export interface BureauDistribution {
 export interface BacklogTrendEntry {
   month: string;
   [key: string]: string | number;
+}
+
+export interface BureauApprovalRateEntry {
+  bureau: string;
+  bureauCode: string;
+  approvalRate: number;
+  processed: number;
+}
+
+export interface BureauApprovalRatesResponse {
+  data: BureauApprovalRateEntry[];
+  periodStart: string;
+  periodEnd: string;
+  threshold: number;
+  excludedBureaus: string[];
 }
