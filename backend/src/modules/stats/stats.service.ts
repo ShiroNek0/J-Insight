@@ -272,6 +272,10 @@ export class StatsService {
         .filter((d) => d.status === '302000')
         .reduce((sum, d) => sum + d.value, 0);
 
+      const totalProcessed = monthData
+        .filter((d) => d.status === '300000')
+        .reduce((sum, d) => sum + d.value, 0);
+
       // totalReceived = carryover + newReceived (same formula as getSummary)
       const totalReceived = carryover + received;
 
@@ -279,7 +283,7 @@ export class StatsService {
         month,
         received,
         totalReceived,
-        processed: granted + denied,
+        processed: totalProcessed,
         granted,
         denied,
         pending: carryover,
@@ -405,21 +409,21 @@ export class StatsService {
       bureauLabels[b.value] = b.label;
     });
 
-    // Aggregate granted (301000) and denied (302000) by bureau
+    // Aggregate granted (301000) and totalProcessed (300000) by bureau
     const bureauStats = new Map<
       string,
-      { granted: number; denied: number }
+      { granted: number; totalProcessed: number }
     >();
 
     data.forEach((item) => {
       if (!bureauStats.has(item.bureau)) {
-        bureauStats.set(item.bureau, { granted: 0, denied: 0 });
+        bureauStats.set(item.bureau, { granted: 0, totalProcessed: 0 });
       }
       const stats = bureauStats.get(item.bureau)!;
       if (item.status === '301000') {
         stats.granted += item.value;
-      } else if (item.status === '302000') {
-        stats.denied += item.value;
+      } else if (item.status === '300000') {
+        stats.totalProcessed += item.value;
       }
     });
 
@@ -433,7 +437,7 @@ export class StatsService {
     const excludedBureaus: string[] = [];
 
     bureauStats.forEach((stats, bureauCode) => {
-      const processed = stats.granted + stats.denied;
+      const processed = stats.totalProcessed;
       const bureauLabel = bureauLabels[bureauCode] || bureauCode;
 
       // Always include Nationwide (100000), otherwise apply threshold
@@ -447,7 +451,8 @@ export class StatsService {
           processed,
         });
       } else if (processed >= THRESHOLD) {
-        const approvalRate = (stats.granted / processed) * 100;
+        const approvalRate =
+          processed > 0 ? (stats.granted / processed) * 100 : 0;
         results.push({
           bureau: bureauLabel,
           bureauCode,

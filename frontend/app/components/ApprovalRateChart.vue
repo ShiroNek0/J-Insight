@@ -32,6 +32,7 @@ interface DataItem {
   month: string;
   granted: number;
   denied: number;
+  processed: number;
 }
 
 interface Props {
@@ -150,9 +151,8 @@ const createChart = () => {
               const dataIndex = firstItem.dataIndex;
               const item = displayData[dataIndex];
               if (!item) return '';
-              const total = item.granted + item.denied;
-              if (total === 0) return '';
-              const approvalRate = (item.granted / total) * 100;
+              if (item.processed === 0) return '';
+              const approvalRate = (item.granted / item.processed) * 100;
               return `${t('chartLabels.approvalRate')}: ${approvalRate.toFixed(1)}%`;
             }
           },

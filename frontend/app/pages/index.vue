@@ -415,9 +415,8 @@ const velocities = computed(() => {
   
   if (!latest || !previous) return null;
 
-  const calculateRate = (granted: number, denied: number) => {
-    const total = granted + denied;
-    return total > 0 ? (granted / total) * 100 : 0;
+  const calculateRate = (granted: number, processed: number) => {
+    return processed > 0 ? (granted / processed) * 100 : 0;
   };
 
   return {
@@ -427,8 +426,8 @@ const velocities = computed(() => {
     pending: { current: latest.pending, previous: previous.pending },
     denied: { current: latest.denied, previous: previous.denied },
     approvalRate: {
-      current: calculateRate(latest.granted, latest.denied),
-      previous: calculateRate(previous.granted, previous.denied)
+      current: calculateRate(latest.granted, latest.processed),
+      previous: calculateRate(previous.granted, previous.processed)
     }
   };
 });
