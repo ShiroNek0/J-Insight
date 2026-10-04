@@ -1,3 +1,5 @@
+// e-Stat transform and bureau deaggregation adapted from JP Immigration Dashboard (MIT), Copyright (c) 2025 Alexander Bracken
+
 import { Injectable, Logger, HttpException, HttpStatus } from '@nestjs/common';
 import * as fs from 'fs';
 import * as path from 'path';
