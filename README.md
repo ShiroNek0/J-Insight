@@ -71,7 +71,7 @@ npm run dev
 
 ## 💡 Acknowledgements
 
-This project is heavily inspired by [JP Immigration Dashboard](https://github.com/RetroHazard/JP_Immigration_Dashboard). Special thanks to the original author, [RetroHazard](https://github.com/RetroHazard), for the concept and data insights.
+Portions of J-Insight's code are adapted from [JP Immigration Dashboard](https://github.com/RetroHazard/JP_Immigration_Dashboard) by [RetroHazard](https://github.com/RetroHazard) (Alexander Bracken), used under the MIT License (see [LICENSE](LICENSE)). Special thanks for the original concept, data insights, and queue estimation model.
 
 ## 📜 License
 

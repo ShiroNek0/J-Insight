@@ -1,3 +1,5 @@
+// Queue model (estimateQueuePosition and date helpers) adapted from JP Immigration Dashboard (MIT), Copyright (c) 2025 Alexander Bracken
+
 import { Injectable } from '@nestjs/common';
 import { StatsService } from '../stats/stats.service';
 import type {

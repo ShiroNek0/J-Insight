@@ -1,3 +1,5 @@
+// Adapted from JP Immigration Dashboard (MIT), Copyright (c) 2025 Alexander Bracken
+
 export interface ApplicationOption {
   value: string;
   label: string;

@@ -1,3 +1,4 @@
+<!-- Formula notation adapted from JP Immigration Dashboard (MIT), Copyright (c) 2025 Alexander Bracken -->
 <template>
   <div class="card px-4 pb-4 pt-2 md:px-6 md:pb-6 md:pt-3 space-y-4">
     <div class="flex items-center justify-between">
